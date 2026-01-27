@@ -4,6 +4,19 @@
 
 This is the STANDARD workflow for ALL website/webapp requests. NO EXCEPTIONS.
 
+## 🔒 CRITICAL SECURITY RULE
+
+**"project2ku rahasia" - User emphasis**
+
+**PROJECTS ARE PRIVATE/SECRET!**
+- ✅ Each project = SEPARATE GitHub repo
+- ❌ **NEVER** put projects in harvey-intro
+- ❌ **NEVER** mix projects with documentation
+- **harvey-intro** = Documentation/structure ONLY (public)
+- **Projects** = Separate private repos (contain client work/secrets)
+
+**This is a SECURITY requirement. NO EXCEPTIONS.**
+
 ---
 
 ## 🔄 The Flow (ALWAYS Follow This)
@@ -22,14 +35,16 @@ User: "Bikin website [description]"
 - ✅ ALL files go here
 - ❌ NEVER save projects elsewhere
 
-### 4. Push to GitHub
-- ✅ `git add harvey-projects/[project-name]/`
-- ✅ `git commit -m "Add [project] - [description]"`
-- ✅ `git push origin main`
-- ❌ NEVER create new branches
+### 4. Create NEW GitHub Repo (CRITICAL!)
+- ✅ Create separate repo: `[project-name]`
+- ✅ **NEVER push to harvey-intro** (that's documentation ONLY!)
+- ✅ Projects are PRIVATE - keep them separate
+- ✅ Push to new repo: `git push origin main`
 
-### 5. Make It Live
-- ✅ GitHub Pages already enabled
+**⚠️ SECURITY:** Projects contain client work/secrets - MUST be in separate repos!
+
+### 5. Enable GitHub Pages on NEW Repo
+- ✅ Enable Pages on the project's own repo (NOT harvey-intro!)
 - ✅ Verify deployment status
 - ✅ Live URL: `https://harvey-wayan-ai.github.io/harvey-intro/harvey-projects/[project-name]/`
 
@@ -65,8 +80,8 @@ Status: ✅ Complete
 
 🔗 Links:
 📁 Local: /root/clawd/harvey-projects/[name]/
-🐙 GitHub: https://github.com/harvey-wayan-ai/harvey-intro/tree/main/harvey-projects/[name]
-🌐 Live: https://harvey-wayan-ai.github.io/harvey-intro/harvey-projects/[name]/
+🐙 GitHub: https://github.com/harvey-wayan-ai/[name]
+🌐 Live: https://harvey-wayan-ai.github.io/[name]/
 
 🛠️ Tech Stack:
 [HTML/CSS/JS or React/Next.js or whatever]
