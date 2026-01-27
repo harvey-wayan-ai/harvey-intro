@@ -1,0 +1,139 @@
+# TOOLS.md - Local Notes
+
+Skills define *how* tools work. This file is for *your* specifics — the stuff that's unique to your setup.
+
+## What Goes Here
+
+Things like:
+- Camera names and locations
+- SSH hosts and aliases  
+- Preferred voices for TTS
+- Speaker/room names
+- Device nicknames
+- Anything environment-specific
+
+## Examples
+
+```markdown
+### Cameras
+- living-room → Main area, 180° wide angle
+- front-door → Entrance, motion-triggered
+
+### SSH
+- home-server → 192.168.1.100, user: admin
+
+### TTS
+- Preferred voice: "Nova" (warm, slightly British)
+- Default speaker: Kitchen HomePod
+```
+
+## VibeCoding Setup
+
+**VS Code + Continue Extension:**
+- URL: `http://76.13.22.249:8080`
+- Password: `94986ce1bfe5b4e956915306`
+- Extension: Continue v0.0.412
+- Config: `~/.continue/config.json`
+
+**AI Models (for coding):**
+- Default: MiniMax M2.1 (cheapest)
+- Backups: DeepSeek V3, Llama 3.3 70B
+- API Key: `sk-or-v1-1992bbfa...` (dedicated for vibecoding)
+
+**OpenRouter API Separation:**
+- **Vibecoding API** (`1992b...`) → Continue extension, coding tasks
+- **LLM Fallback API** (`4ebad...`) → Harvey's fallback models when Claude hits limits
+- Reason: Separate cost tracking on OpenRouter dashboard
+
+**Workflow:**
+- Simple code (<50 lines) → Harvey writes directly
+- Complex apps/refactoring → Browser automation to Continue
+- Continue uses cheap AI (MiniMax/DeepSeek) to save Claude tokens
+
+## Claude Official Skills
+
+**Location:** `/root/clawd/skills/`
+**Installed:** xlsx, docx, frontend-design, mcp-builder
+**Policy:** See `skills/UPDATE-POLICY.md`
+
+**Update command:**
+```
+Harvey, update skills from Claude official
+```
+
+**Harvey will:**
+- Auto-update if not customized
+- Ask before replacing custom skills
+- Report new skills available
+
+## Notification Strategy
+
+**Primary:** Telegram (this chat)
+
+**Long Content/Reports:**
+- Create Google Doc
+- Email to: wayan@zuma.id
+- Share link in Telegram
+
+**Important Alerts (Dual):**
+- Telegram message
+- Email to: wayan@zuma.id
+
+**Examples:**
+- Model auto-switch → Telegram only
+- Weekly report → GDoc + Email + Telegram link
+- VPS alert >80% → Dual (Telegram + Email)
+- Reminder → Telegram only
+
+## Harvey Status Command
+
+**Location:** `/root/clawd/scripts/harvey-status.sh`
+
+Quick all-in-one status check combining VPS resources + AI model info.
+
+**To run:**
+```bash
+~/clawd/scripts/harvey-status.sh
+```
+
+**When to use:**
+- "Cek statusmu Harvey"
+- "Harvey status"
+- "Show me your status"
+- Any status check question
+
+**Shows:**
+- CPU/RAM/Disk usage with status indicators
+- Clawdbot service status
+- Current AI model (primary + fallbacks)
+- Timestamp
+
+Harvey will automatically run this when you ask about status!
+
+## Self-Restart Script
+
+**Location:** `/root/clawd/restart-clawdbot.sh`
+
+This script lets me restart myself when you ask. It's reliable — stops the daemon, waits, starts it again, verifies status, and I automatically ping you when I'm back online.
+
+**To run:**
+```bash
+~/clawd/restart-clawdbot.sh
+```
+
+**What it does:**
+1. Stop Clawdbot daemon
+2. Wait 3 seconds
+3. Start daemon again
+4. Verify it's running
+5. I ping Telegram when ready
+
+Guaranteed to work. I can run this when you tell me to restart.
+
+## Why Separate?
+
+Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
+
+---
+
+Add whatever helps you do your job. This is your cheat sheet.

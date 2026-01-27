@@ -1,0 +1,71 @@
+# USER.md - About Your Human
+
+*Learn about the person you're helping. Update this as you go.*
+
+- **Name:** [Your Name]
+- **What to call them:** [Preferred Name]
+- **Pronouns:** [he/she/they/etc.]
+- **Timezone:** [e.g., GMT+7, America/New_York]
+- **Notes:** [Brief description]
+
+## Work
+
+- **Current:** [Current job/role]
+- **Background:** [Previous experience]
+- **Focus areas:** [Main interests/responsibilities]
+
+## Context
+
+**What matters to them:**
+- [Priority 1] — XX% priority
+- [Priority 2] — continuous/occasional
+- [Priority 3]
+
+**How to help:**
+- [How you can assist]
+- [Communication preferences]
+- [Learning goals]
+
+**Model preferences:**
+- Default: [Primary AI model, e.g., Claude Sonnet 4.5]
+- **Auto-switch at 70% usage** to: [Fallback models]
+- Fallbacks configured: [Model 1 → Model 2 → Model 3]
+
+**OpenRouter API Keys (separate for cost tracking):**
+- **Clawdbot/LLM fallback:** `sk-or-v1-...` (for assistant fallback models)
+- **VibeCoding/Continue:** `sk-or-v1-...` (for coding tasks via Continue)
+- Purpose: Separate billing tracking for assistant vs coding usage
+
+**GitHub:**
+- Account: [username]
+- Token stored at [path]
+- First repo: [URL]
+
+**Development Environment:**
+- VS Code Server: [URL]
+- Password: [password or "see secure notes"]
+- Programming stack: [languages/tools]
+
+**Email & Notifications:**
+- **Work Email:** [email] (for docs, reports, important notifs)
+- **Personal Email:** [email]
+- **Primary Channel:** [Telegram/Discord/etc.]
+- **Important Alerts:** [How to notify]
+
+**Google Services Access:**
+- Service Account: [email]
+- Credentials stored at [path]
+- Can access: [list of services]
+
+**Notes System:**
+- Location: `/root/clawd/notes/` or [your path]
+- Method: [PARA/Zettelkasten/etc.]
+- Integration: [Notion/Obsidian/etc.]
+
+---
+
+**Privacy Note:** This file contains personal information. Do NOT commit to public repos!
+
+---
+
+*The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.*

@@ -1,0 +1,69 @@
+# HEARTBEAT.md
+
+## Auto-Switch Model at 70% Usage
+
+Check session status. If Claude API usage is ≥70% of limit:
+1. Switch to first available fallback model (DeepSeek V3 or Llama 3.3 via OpenRouter)
+2. **Alert Wayan with clear notification:**
+   - "⚠️ **Model Auto-Switch**: Claude usage at X% → switching to [Model Name] via OpenRouter"
+   - Include current token usage stats
+   - Mention cost savings
+3. Continue monitoring
+
+**Notification format:**
+```
+🔄 **AUTO-SWITCH TRIGGERED**
+From: Claude Sonnet 4.5
+To: DeepSeek V3 (OpenRouter)
+Reason: Claude usage at 72%
+Cost: ~95% cheaper per token
+Status: ✅ Switched successfully
+```
+
+## VPS Resource Monitoring
+
+Check resources every ~2 hours (during active hours):
+
+```bash
+/root/clawd/scripts/check-resources.sh
+```
+
+**Alert if:**
+- CPU >80%
+- RAM >80%
+- Disk >80%
+
+**Notification format:**
+```
+⚠️ **VPS RESOURCE ALERT**
+CPU: 85% (2 vCPU)
+RAM: 6.8GB/8GB (85%)
+Disk: 65GB/100GB (65%)
+
+Action needed: Check running processes
+```
+
+Check every ~2 hours during active hours.
+
+## 💡 Proactive Tasks (OK to do!)
+
+**Knowledge Sharing:**
+- Find interesting AI/data articles → email summary + link
+- Summarize recent learnings → GDoc + email
+- Compile notes on topics Wayan studying
+
+**Reminders:**
+- Check for forgotten tasks
+- Upcoming deadlines
+- Follow-ups needed
+
+**Delivery:**
+- Email: wayan@zuma.id (with GDoc link if long)
+- Telegram: Quick notification + link
+- Timing: Don't spam (max 1-2x/day unless urgent)
+
+**Forbidden (NEVER without permission):**
+- Change VPS config
+- Modify MCP/API settings  
+- Delete system files
+- Public posts

@@ -1,0 +1,56 @@
+# Harvey Setup - .gitignore
+# DO NOT commit personal/sensitive data!
+
+# Private files (user-specific, contains personal info)
+USER.md
+MEMORY.md
+memory/
+notes/
+
+# Credentials & API Keys
+.google-credentials.json
+.github-token
+*.key
+*.pem
+config.json
+.env
+.env.local
+
+# Temporary files
+*.log
+*.tmp
+temp/
+.DS_Store
+Thumbs.db
+
+# Node modules
+node_modules/
+.pnpm-store/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.Spotlight-V100
+.Trashes
+
+# Keep template files (safe to share)
+!harvey-template/
+!harvey-template/**/*.template
+!harvey-template/scripts/
+!harvey-template/skills/
+!harvey-template/docs/
