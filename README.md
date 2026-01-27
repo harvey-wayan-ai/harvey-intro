@@ -10,6 +10,7 @@
 
 - [Overview](#overview)
 - [Features](#features)
+- [Sub-Agent Architecture](#-sub-agent-architecture)
 - [Folder Structure](#folder-structure)
 - [Setup Guide](#setup-guide)
 - [Cost Optimization](#cost-optimization)
@@ -66,6 +67,93 @@ Harvey is a personal AI assistant that:
 - Google Docs/Sheets
 - Telegram (primary channel)
 - GitHub (code management)
+## 🤖 Sub-Agent Architecture
+
+Harvey uses a **dual-layer architecture** for optimal performance and cost efficiency:
+
+### Layer 1: Orchestrator (Harvey - Claude Sonnet 4.5)
+**Role:** High-level reasoning, decision making, user interaction
+
+- Understanding complex requests
+- Orchestrating workflows  
+- Quality control & review
+- User communication
+
+**Cost:** Premium (but minimal - orchestration only)
+
+### Layer 2: Sub-Agents (OpenRouter Models)
+**Role:** Execute heavy computational tasks in background
+
+**Available Models:**
+- `deepseek/deepseek-chat` (DeepSeek V3) - **Best for coding** (~$0.14/1M tokens)
+- `meta-llama/llama-3.3-70b-instruct` (Llama 3.3) - Reasoning & research
+- `minimax-ai/minimax-01` (MiniMax M2.1) - Cheapest option
+
+**Cost Savings:** ~95% cheaper than using Claude for everything
+
+### How It Works
+
+**Traditional (inefficient):**
+```
+User: "Build a data processing script"
+Harvey: [hangs for 30s while coding...]
+Cost: ~$0.15 (Claude tokens)
+```
+
+**Harvey's Approach (efficient):**
+```
+User: "Build a data processing script"  
+Harvey: "🤖 Spawning sub-agent (DeepSeek)..." [instant]
+Sub-Agent: [works in background]
+Sub-Agent: ✅ Complete! 
+Harvey: "Done! /path/to/script.py"
+Cost: ~$0.008 (95% savings)
+```
+
+### Automatic Delegation
+
+**Sub-agents spawned automatically for:**
+- ✅ Coding & scripting (>20 lines)
+- ✅ Data processing & analysis
+- ✅ Report generation  
+- ✅ Web research
+- ✅ Document creation
+- ✅ Long-running operations
+
+**Harvey handles directly:**
+- ⚡ Quick responses (<5s)
+- ⚡ Simple file operations
+- ⚡ Conversations
+- ⚡ Decision-making
+
+### Sub-Agent Status Reporting
+
+After each task, Harvey reports performance:
+
+```
+🤖 Sub-Agent Report:
+Model: DeepSeek V3 (via OpenRouter)
+Task: Stock monitoring script
+Duration: 23.4s
+Tokens: 1,245 in / 3,876 out
+Cost: ~$0.0082
+Status: ✅ Complete
+Output: /root/clawd/scripts/stock-monitor.py
+```
+
+### Cost Impact
+
+**Monthly estimates:**
+- Harvey (orchestrator): ~$15-25/month
+- Sub-agents (execution): ~$3-8/month  
+- **Total: ~$18-33/month**
+
+**vs Claude-only:** ~$200-300/month
+
+**Savings: 85-90%** 💰
+
+---
+
 - Continue extension (for cheap coding)
 
 ---
