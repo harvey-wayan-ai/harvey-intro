@@ -226,7 +226,7 @@ This applies to ALL calculations - totals, percentages, ratios, differences, etc
 
 1. **Try operation** → Make changes to Excel file
 2. **Read back** → Load the file and inspect what actually happened
-3. **Verify** → Check if changes are correct (formulas, values, formatting)
+3. **Verify** → Check if changes are correct (formulas, values, formatting, **contextual accuracy**)
 4. **Report** → Tell user what you found and what worked/failed
 
 ### Why This Matters
@@ -236,31 +236,93 @@ Excel libraries don't always behave as expected:
 - Formulas might have syntax errors
 - Data might be in unexpected locations
 
-**NEVER assume your code worked. ALWAYS verify.**
+### What to Verify (CRITICAL!)
 
-### Example Workflow
+**1. Technical Correctness:**
+- ✅ Formulas have no errors (#REF!, #DIV/0!, #VALUE!, #NAME?)
+- ✅ Cell references point to correct cells
+- ✅ Formula syntax is valid
+
+**2. Contextual Correctness (EQUALLY IMPORTANT!):**
+- ✅ **Number formatting matches data type:**
+  - Revenue/Money → Use Rp format (Rp 1,287,497,000)
+  - Pairs/Units/Quantities → Plain number format (9,673)
+  - Counts (stores, products, people) → Plain number format (30)
+  - Percentages → Use % format (15.5%)
+  - Dates → Use date format
+- ✅ **Values make sense in context:**
+  - Does the number seem reasonable? (e.g., 9,673 pairs sold vs 9,673,000 pairs - which is realistic?)
+  - Does the label match the format? (e.g., "Total Pairs" shouldn't show Rp format)
+  - Are units consistent? (don't mix Rp and plain numbers in the same metric category)
+
+**Example of contextual verification:**
 ```python
-# 1. Try operation
-sheet['B5'] = '=SUM(A2:A10)'
-wb.save('output.xlsx')
+# After creating dashboard with KPIs:
+# Check cell B7 (Total Pairs Sold)
+value = sheet['B7'].value  # Should be: 9673 (number)
+format = sheet['B7'].number_format  # Should be: '#,##0' NOT 'Rp #,##0'
 
-# 2. Read back
-wb_check = load_workbook('output.xlsx')
-sheet_check = wb_check.active
-actual_formula = sheet_check['B5'].value
+# Check cell B8 (Total Revenue)  
+value = sheet['B8'].value  # Should be: 1287497000
+format = sheet['B8'].number_format  # Should be: 'Rp #,##0' ✅ Correct!
 
-# 3. Verify
-print(f"Cell B5 contains: {actual_formula}")
-if actual_formula == '=SUM(A2:A10)':
-    print("✅ Formula correct")
-else:
-    print(f"❌ Expected =SUM(A2:A10), got {actual_formula}")
-
-# 4. Report to user
-# Tell them exactly what's in the file
+# WRONG: Pairs showing as "Rp 9,673" 
+# RIGHT: Pairs showing as "9,673" (plain number)
 ```
 
-**Bottom line:** Write code → Save file → Open file → Check what's actually there → Report findings
+**Bottom line:** It's not just "does the formula work?" — it's also "is this the RIGHT answer in the RIGHT format with the RIGHT context?"
+
+**NEVER assume your code worked. ALWAYS verify both technical AND contextual correctness.**
+
+### Example Workflow with Full Verification
+```python
+# 1. Try operation - Create KPI dashboard
+sheet['A7'] = 'Total Pairs Sold'
+sheet['B7'] = '=SUM(DATABASE!$H:$H)'  # Pairs column
+sheet['B7'].number_format = '#,##0'    # Plain number for quantities
+
+sheet['A8'] = 'Total Revenue'
+sheet['B8'] = '=SUM(DATABASE!$J:$J)'   # Revenue column  
+sheet['B8'].number_format = 'Rp #,##0' # Rupiah for money
+
+wb.save('dashboard.xlsx')
+
+# 2. Read back
+wb_check = load_workbook('dashboard.xlsx')
+sheet_check = wb_check.active
+
+# 3. Verify - BOTH technical AND contextual
+# Check Total Pairs
+pairs_formula = sheet_check['B7'].value
+pairs_format = sheet_check['B7'].number_format
+print(f"B7 (Pairs): formula={pairs_formula}, format={pairs_format}")
+
+# ✅ Technical: Formula correct?
+if 'SUM(DATABASE!$H:$H)' in pairs_formula:
+    print("✅ Formula technically correct")
+    
+# ✅ Contextual: Format appropriate for pairs/units?
+if pairs_format == '#,##0':  # Plain number
+    print("✅ Format contextually correct (plain number for quantities)")
+elif 'Rp' in pairs_format:
+    print("❌ WRONG! Pairs shouldn't use Rp format")
+
+# Check Total Revenue
+revenue_formula = sheet_check['B8'].value
+revenue_format = sheet_check['B8'].number_format
+print(f"B8 (Revenue): formula={revenue_formula}, format={revenue_format}")
+
+if 'SUM(DATABASE!$J:$J)' in revenue_formula and 'Rp' in revenue_format:
+    print("✅ Both formula and format correct for revenue")
+    
+# 4. Report to user
+# "Dashboard created. Verified:
+#  - Total Pairs: Plain number format ✅
+#  - Total Revenue: Rp format ✅  
+#  - All formulas working correctly"
+```
+
+**Bottom line:** Write code → Save file → Open file → Check BOTH technical correctness AND contextual appropriateness → Report findings
 
 ## Common Workflow
 1. **Choose tool**: pandas for data, openpyxl for formulas/formatting
