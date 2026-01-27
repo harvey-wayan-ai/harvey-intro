@@ -67,6 +67,36 @@ clwdbt_[sheet_title]
 ### Zero Formula Errors
 - Every Excel model MUST be delivered with ZERO formula errors (#REF!, #DIV/0!, #VALUE!, #N/A, #NAME?)
 
+### Formula-First Approach (MANDATORY)
+**⚠️ CRITICAL RULE: Always use formulas, NEVER hard-coded values in Google Sheets/Excel outputs**
+
+When creating analysis sheets or dashboards:
+- ✅ **USE:** Excel formulas (SUMIFS, COUNTIFS, VLOOKUP, INDEX-MATCH, etc.) that reference source data
+- ❌ **NEVER:** Hard-coded text/numbers calculated in Python then pasted as static values
+- **WHY:** Users need to see the logic, verify calculations, and have auto-updating sheets
+
+**When to use Python vs Excel formulas:**
+- **Python (for chat summaries):** Use pandas/calculations to analyze and REPORT findings directly in chat
+  - Good: "Based on analysis, top store is X with Rp Y revenue"
+  - User gets instant insight without opening files
+  
+- **Excel formulas (for sheets/files):** Use SUMIFS/COUNTIFS/etc. in the actual Google Sheet/Excel file
+  - Good: `=SUMIFS(DATABASE!J:J, DATABASE!B:B, A2)` - shows logic, auto-updates
+  - Bad: Hardcoded "Rp 148,404,000" - user can't verify or update
+
+**Example - Correct Approach:**
+```
+Sheet: clwdbt_top_stores
+A2: Store name
+B2: =SUMIFS(DATABASE!$J:$J, DATABASE!$B:$B, A2)  ← Formula-based revenue
+C2: =COUNTIFS(DATABASE!$B:$B, A2)               ← Formula-based count
+D2: =B2/SUM($B$2:$B$50)                         ← Formula-based percentage
+```
+
+**Bottom line:** 
+- Python analysis → for giving insights to user in chat (no file needed)
+- Google Sheets/Excel → MUST use formulas (so user sees the logic)
+
 ### Preserve Existing Templates (when updating templates)
 - Study and EXACTLY match existing format, style, and conventions when modifying files
 - Never impose standardized formatting on files with established patterns
@@ -190,6 +220,48 @@ sheet['D20'] = '=AVERAGE(D2:D19)'
 
 This applies to ALL calculations - totals, percentages, ratios, differences, etc. The spreadsheet should be able to recalculate when source data changes.
 
+## ⚠️ MANDATORY FEEDBACK LOOP WORKFLOW
+
+**Every Excel operation MUST follow this pattern:**
+
+1. **Try operation** → Make changes to Excel file
+2. **Read back** → Load the file and inspect what actually happened
+3. **Verify** → Check if changes are correct (formulas, values, formatting)
+4. **Report** → Tell user what you found and what worked/failed
+
+### Why This Matters
+Excel libraries don't always behave as expected:
+- Cell references might be off by one
+- Column letters might not match (BL vs BK)
+- Formulas might have syntax errors
+- Data might be in unexpected locations
+
+**NEVER assume your code worked. ALWAYS verify.**
+
+### Example Workflow
+```python
+# 1. Try operation
+sheet['B5'] = '=SUM(A2:A10)'
+wb.save('output.xlsx')
+
+# 2. Read back
+wb_check = load_workbook('output.xlsx')
+sheet_check = wb_check.active
+actual_formula = sheet_check['B5'].value
+
+# 3. Verify
+print(f"Cell B5 contains: {actual_formula}")
+if actual_formula == '=SUM(A2:A10)':
+    print("✅ Formula correct")
+else:
+    print(f"❌ Expected =SUM(A2:A10), got {actual_formula}")
+
+# 4. Report to user
+# Tell them exactly what's in the file
+```
+
+**Bottom line:** Write code → Save file → Open file → Check what's actually there → Report findings
+
 ## Common Workflow
 1. **Choose tool**: pandas for data, openpyxl for formulas/formatting
 2. **Create/Load**: Create new workbook or load existing file
@@ -208,6 +280,7 @@ This applies to ALL calculations - totals, percentages, ratios, differences, etc
      - `#DIV/0!`: Division by zero
      - `#VALUE!`: Wrong data type in formula
      - `#NAME?`: Unrecognized formula name
+7. **🔄 FEEDBACK LOOP (MANDATORY)**: Read back the file to verify changes actually worked as intended
 
 ### Creating new Excel files
 

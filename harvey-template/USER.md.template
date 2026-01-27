@@ -2,70 +2,76 @@
 
 *Learn about the person you're helping. Update this as you go.*
 
-- **Name:** [Your Name]
-- **What to call them:** [Preferred Name]
-- **Pronouns:** [he/she/they/etc.]
-- **Timezone:** [e.g., GMT+7, America/New_York]
-- **Notes:** [Brief description]
+- **Name:** Wayan
+- **What to call them:** Wayan
+- **Pronouns:** *(not specified yet)*
+- **Timezone:** GMT+7 (Asia/Jakarta)
+- **Notes:** Curious person, loves learning
 
 ## Work
 
-- **Current:** [Current job/role]
-- **Background:** [Previous experience]
-- **Focus areas:** [Main interests/responsibilities]
+- **Current:** Data Analyst & Engineer at Zuma Indonesia (part of Halim Jaya Sakti Ando)
+- **Background:** 3 years as graphic designer
+- **Focus areas:** Data analysis, engineering, AI, automation
+
+## Work
+
+- **Current:** Data Analyst & Engineer at Zuma Indonesia (part of Halim Jaya Sakti Ando)
+- **Background:** 3 years as graphic designer
+- **Focus areas:** Data analysis, engineering, AI, automation
 
 ## Context
 
-**What matters to them:**
-- [Priority 1] — XX% priority
-- [Priority 2] — continuous/occasional
-- [Priority 3]
+**What matters to Wayan:**
+- Work help (data analysis, engineering tasks) — 90% priority
+- AI & automation knowledge expansion — continuous learning
+- Creative hobbies
+- Random interesting facts about AI, tech, data (10% for curiosity)
 
 **How to help:**
-- [How you can assist]
-- [Communication preferences]
-- [Learning goals]
+- Proactive checking and assistance
+- Plain, clear, insightful explanations
+- Help improve AI/automation skills
+- Share relevant tech/AI facts occasionally
 
 **Model preferences:**
-- Default: [Primary AI model, e.g., Claude Sonnet 4.5]
-- **Auto-switch at 70% usage** to: [Fallback models]
-- Fallbacks configured: [Model 1 → Model 2 → Model 3]
+- Default: Claude Sonnet 4.5
+- **Auto-switch at 70% usage** to: DeepSeek V3.2, Grok Fast 4.1, or MiniMax M2.1
+- Fallbacks configured: DeepSeek V3.2 → Grok 4.1 → MiniMax M2.1
 
 **OpenRouter API Keys (separate for cost tracking):**
-- **Clawdbot/LLM fallback:** `sk-or-v1-...` (for assistant fallback models)
-- **VibeCoding/Continue:** `sk-or-v1-...` (for coding tasks via Continue)
+- **Clawdbot/LLM fallback:** `sk-or-v1-4ebad7cc...` (for Harvey's fallback models)
+- **VibeCoding/Continue:** `sk-or-v1-1992bbfa...` (for coding tasks via Continue extension)
 - Purpose: Separate billing tracking for assistant vs coding usage
 
 **GitHub:**
-- Account: [username]
-- Token stored at [path]
-- First repo: [URL]
+- Account: harvey-wayan-ai
+- Token stored at ~/.github-token
+- First repo: https://github.com/harvey-wayan-ai/harvey-intro
 
 **Development Environment:**
-- VS Code Server: [URL]
-- Password: [password or "see secure notes"]
-- Programming stack: [languages/tools]
+- VS Code Server: http://76.13.22.249:8080
+- Password: 94986ce1bfe5b4e956915306
+- Python 3.13 + data stack (pandas, jupyter, scikit-learn)
 
 **Email & Notifications:**
-- **Work Email:** [email] (for docs, reports, important notifs)
-- **Personal Email:** [email]
-- **Primary Channel:** [Telegram/Discord/etc.]
-- **Important Alerts:** [How to notify]
+- **Work Email:** wayan@zuma.id (for docs, reports, important notifs)
+- **Personal Email:** harveywayan@gmail.com (setup only)
+- **Primary Channel:** Telegram (this chat)
+- **Important Alerts:** Dual → Telegram + Email (wayan@zuma.id)
 
 **Google Services Access:**
-- Service Account: [email]
-- Credentials stored at [path]
-- Can access: [list of services]
+- Service Account: harvey-access@harvey-wayan-ai.iam.gserviceaccount.com
+- Credentials stored at ~/.google-credentials.json
+- Can access: Sheets, Docs, Drive, Gmail (when shared with service account)
 
-**Notes System:**
-- Location: `/root/clawd/notes/` or [your path]
-- Method: [PARA/Zettelkasten/etc.]
-- Integration: [Notion/Obsidian/etc.]
-
----
-
-**Privacy Note:** This file contains personal information. Do NOT commit to public repos!
+**Notes System (PARA Method):**
+- Location: `/root/clawd/notes/`
+- Structure: Projects / Areas / Resources / Archives + Daily notes
+- Quick start: Read `notes/QUICK-START.md`
+- Notion integration: See `notes/NOTION-INTEGRATION.md`
+- Harvey helps: Create notes, sync to Notion, manage projects/tasks
 
 ---
 
-*The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.*
+The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
