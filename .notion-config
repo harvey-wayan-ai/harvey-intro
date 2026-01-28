@@ -1,0 +1,22 @@
+# Notion Configuration
+# Harvey's Notion workspace setup
+
+# Task Database
+TASK_DATABASE_ID="2f60c00f-5fec-8157-b0e5-cc48faac3393"
+TASK_DATABASE_URL="https://www.notion.so/2f60c00f5fec8157b0e5cc48faac3393"
+
+# Pages
+NOTES_PAGE_ID="2f60c00f-5fec-808c-aeb2-caf361f7d14a"
+NOTES_PAGE_URL="https://www.notion.so/Harvey-Notes-Here-2f60c00f5fec808caeb2caf361f7d14a"
+
+PROJECTS_PAGE_ID="2f60c00f-5fec-80b0-9a19-ffbc3ba9b93c"
+PROJECTS_PAGE_URL="https://www.notion.so/Harvey-Project-Tasks-Here-2f60c00f5fec80b09a19ffbc3ba9b93c"
+
+# API
+NOTION_API_KEY_PATH="~/.config/notion/api_key"
+NOTION_VERSION="2022-06-28"
+
+# Usage:
+# - Harvey Notes Here = All notes, conversations, decisions, learnings
+# - Harvey Project & Tasks Here = Task database (single source of truth)
+# - Memory files = Context/notes ONLY (NO tasks!)
