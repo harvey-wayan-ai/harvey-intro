@@ -2,6 +2,48 @@
 
 Skills define *how* tools work. This file is for *your* specifics — the stuff that's unique to your setup.
 
+## mgrep - Semantic Search (PREFERRED)
+
+**Use mgrep instead of grep for finding code by meaning.**
+
+```bash
+# Find code by describing what you're looking for
+mgrep "where is user authentication?"
+mgrep "how does payment processing work?"
+
+# Web search with summarized answer
+mgrep --web --answer "how to use React Server Components"
+
+# Limit results
+mgrep -m 5 "error handling"
+```
+
+**When to use mgrep:** Exploring code, finding features, understanding intent
+**When to use grep:** Exact string match, refactoring, regex patterns
+
+**Cost Impact:** ~50% fewer tokens per search (vs trial-and-error grep)
+**Status:** `mgrep watch` runs as systemd service - workspace auto-indexed
+
+## Multi-Agent Delegation System
+
+**Specialized sub-agents for efficient task delegation:**
+
+```bash
+# Deep reasoning & architecture decisions
+clawdbot agent --agent oracle --message "analyze this complex problem"
+
+# Quick codebase exploration  
+clawdbot agent --agent explore --message "find all auth implementations"
+
+# External documentation research
+clawdbot agent --agent librarian --message "React 19 Server Components best practices"
+
+# Fast simple tasks (typos, small fixes)
+clawdbot agent --agent quick --message "fix this typo in line 42"
+```
+
+**Strategy:** Orchestrate rather than execute. Delegate specialized work to appropriate agents to save expensive Sonnet tokens for decision-making only.
+
 ## What Goes Here
 
 Things like:

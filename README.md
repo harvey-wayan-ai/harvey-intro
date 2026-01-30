@@ -38,7 +38,21 @@ Harvey is a personal AI assistant that:
 
 ## ✨ Features
 
-### 1. **Cost Optimization**
+### 1. **Multi-Agent Delegation System** 🤖
+- **oracle** - Deep reasoning, architecture decisions, debugging hard problems  
+- **explore** - Quick codebase search for files, patterns, implementations
+- **librarian** - External docs research (APIs, libraries, best practices)  
+- **quick** - Fast simple tasks (typos, small changes, quick fixes)
+- **Smart orchestration** - Delegates specialized work to save expensive tokens
+
+### 2. **Semantic Search (mgrep)** 🔍
+- **AI-powered code search** - Find code by meaning, not exact strings
+- **Natural language queries** - "where is user authentication?" vs grep patterns
+- **Web research** - `mgrep --web --answer` for summarized external documentation  
+- **50% fewer tokens** - Eliminates trial-and-error grep attempts
+- **Auto-indexing** - Background service keeps workspace semantically indexed
+
+### 3. **Cost Optimization**
 - Auto-switch to cheaper models at 70% Claude usage
 - Separate API keys for assistant vs coding tasks
 - Token-efficient memory management
